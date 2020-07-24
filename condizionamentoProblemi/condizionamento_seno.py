@@ -5,7 +5,7 @@ perturb = float(input('Inserire perturbazione : ')) #es. 1.0e-5
 
 # Costruzione dati perturbati
 from random import random
-xt = x*(1 + perturb*(-1+2*random))
+xt = x*(1 + perturb*(-1+2*random()))
 
 #Calcolo del seno
 import numpy as np
