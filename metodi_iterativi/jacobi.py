@@ -16,7 +16,7 @@ def Jacobi(A,b,x0,tol,Kmax,xsol):
     diff_it_succ = np.zeros(Kmax)
 
     print('|-----+--------------+--------------+--------------+--------------|')
-    print('| k | Errore Rel | Residuo Rel | Diff It Succ | Tol |')
+    print('| k   | Errore Rel   | Residuo Rel  | Diff It Succ | Tol          |')
     print('|-----+--------------+--------------+--------------+--------------|')
     while not (stop) and k < Kmax:
         for i in range(n):
