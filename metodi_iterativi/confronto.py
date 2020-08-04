@@ -112,32 +112,23 @@ def SostIndietro(A,b):
     return x
 
 
-def FattLUP(A,b):
+def FattLU(A,b):
     A = np.copy(A)
-    b = np.copy(b)
     n = len(A)
+    L = np.zeros((n,n))
+    for j in range(n-1):
+        L[j,j] = 1
+        for i in range(j+1,n):
+            m = A[i,j]/A[j,j]
+            A[i,j] = 0
+            for k in range(j+1,n):
+                A[i,k] = A[i,k] - m*A[j,k]
+            L[i,j] = m
+    L[n-1,n-1] = 1
 
-    for j in range(n - 1):  # scelta elemento pivot
-        am = abs(A[j][j]); p = j
-        for i in range(j + 1, n):
-            if abs(A[i][j]) > am:
-                am = abs(A[i][j]); p = j
-
-        # eventuale scambio di riga
-        if p > j:
-            for k in range(n):
-                A[j][k], A[p][k] = A[p][k], A[j][k]
-            b[j], b[p] = b[p], b[j]
-
-        # Fattorizzazzione
-        for i in range(j + 1, n):
-            A[i][j] = A[i][j] / A[j][j]
-            for k in range(j + 1, n):
-                A[i][k] = A[i][k] - A[i][j] * A[j][k]
-
-        y = SostAvanti(A, b)
-        x = SostIndietro(A, y)
-        return x
+    yt = SostAvanti(L,b)
+    xt = SostIndietro(A,yt)
+    return xt
 
 
 def SostAvanti(A, b):
@@ -168,6 +159,7 @@ Tempo_J = np.zeros(len(n_vett))
 Tempo_EGP = np.zeros(len(n_vett))
 #Statistiche Fattorizzazione LU con Pivoting
 Tempo_FattLUP = np.zeros(len(n_vett))
+
 i = 0 ;
 
 for n in n_vett:
@@ -210,10 +202,10 @@ for n in n_vett:
     tempo = (fine - inizio) / Ripet
     Tempo_EGP[i] = tempo
 
-    # Fattorizzazione LU con Pivoting
+    # Fattorizzazione LU senza Piv
     inizio = time.time()
     for r in range(Ripet):
-        x = FattLUP(A, b)
+        x = FattLU(A, b)
     fine = time.time()
     tempo = (fine - inizio) / Ripet
     Tempo_FattLUP[i] = tempo
@@ -225,10 +217,12 @@ plt.semilogy(n_vett,Iter_GS,'*', label = 'Gauss-Seidel')
 plt.semilogy(n_vett,Iter_J,'*', label='Jacobi')
 plt.xlabel('n') ; plt.ylabel('Numero Iterazioni')
 plt.legend()
+plt.show()
 plt.figure(2)
 plt.semilogy(n_vett,Tempo_GS, label='Gauss-Seidel')
 plt.semilogy(n_vett,Tempo_J, label='Jacobi')
 plt.semilogy(n_vett,Tempo_EGP, label='EGP')
-plt.semilogy(n_vett,Tempo_FattLUP, label='FattLUP')
+plt.semilogy(n_vett,Tempo_FattLUP, label='FattLU')
 plt.xlabel('n') ; plt.ylabel('Tempo esecuzione')
 plt.legend()
+plt.show()
