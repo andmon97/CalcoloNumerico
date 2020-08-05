@@ -17,3 +17,11 @@ def Newton(x_nodi, y_nodi, x):
         else:
             p[i] = calc_Newton(x_nodi, d, xx)
     return p
+
+def diffDiv(x_nodi, y_nodi):
+    n = len(x_nodi)
+    d = np.copy(y_nodi)
+    for j in range (1, n):
+        for i in range(n-1, j-1, -1):
+            d[i] = (d[i] - d[i-1]) / (x_nodi[i] - x_nodi[i-j])
+    return d
