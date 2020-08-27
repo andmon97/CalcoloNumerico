@@ -35,13 +35,13 @@ def calc_Newton(x_nodi, d, x):
 
 # Funzione da interpolare
 def funz(x):
-    y = np.sin(x)
+    y = x**4 - 3*x**2
     return y
 
 # Grado del polinomio di interpolazione
-n = 15
+n = 2
 # Calcolo dei nodi e dei valori associati
-a = 0 ; b = 2*np.pi
+a = -5; b = 5
 x_nodi = np.linspace(a,b,n+1)
 #k = np.array(range(n,-1,-1))
 #x_nodi = (a+b)/2 +(b-a)/2*np.cos((2*k+1)*np.pi/2/(n+1))
@@ -58,12 +58,12 @@ plt.plot(x,f,label='f(x)')
 plt.plot(x_nodi,y_nodi,'k*')
 plt.legend()
 plt.xlabel('x')
-plt.title('Pol. interp. grado n=%d di f(x)=sin(x) in [%4.2f %4.2f]' % (n,a,b))
+plt.title('Pol. interp. grado n=%d di f(x)=x^4 - 3*x^2 in [%4.2f %4.2f]' % (n,a,b))
 plt.show(block=False)
 # Grafico del resto del polinomio di interpolazione
 plt.figure(1)
 plt.semilogy(x,abs(p-f),label='R(x)')
 plt.legend()
 plt.xlabel('x')
-plt.title('Resto pol. interp. grado n=%d di f(x)=sin(x) in [%4.2f %4.2f]' % (n,a,b))
+plt.title('Resto pol. interp. grado n=%d di f(x)=x^4 - 3*x^2  in [%4.2f %4.2f]' % (n,a,b))
 plt.show(block=False)

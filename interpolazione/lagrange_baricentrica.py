@@ -45,7 +45,7 @@ def funz(x):
     return y
 
 # Grado del polinomio di interpolazione
-n = 10
+n = 15
 # Calcolo dei nodi e dei valori associati
 a = 0 ; b = 2*np.pi
 x_nodi = np.linspace(a,b,n+1)
