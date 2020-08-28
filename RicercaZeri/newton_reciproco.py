@@ -43,20 +43,18 @@ def Newton(x0, tol, kmax):
 
 
 def fun(x):
-    y = sin(x) + 1
+    y = 2 - 1/x
     return y
 
 def dfun(x):
-    y = cos(x)
+    y = 1/(x**2)
     return y
 
 
-x0 = 3.14;
+x0 = 0.9;
 kmax = 100 ; tol = 1.0e-6 ;
 xsol, k, val_fun, it_succ = Newton(x0, tol, kmax)
-print('La radice ottenuta col metodo di Newton affinche sin(x) + 1 = 0 è x=%f (%f)'
-    %(xsol, np.pi/2))
-
+print('La radice ottenuta col metodo di Newton partendo da x0=%.2f affinche 2-1x=0 (1/2)è x=%.5f' %(x0,xsol))
 plt.figure(1)
 plt.semilogy(range(k),val_fun[0:k],label='Valore funzione')
 plt.semilogy(range(k),it_succ[0:k],label='Diff. Iter. Succ.')
@@ -65,4 +63,3 @@ plt.legend()
 plt.xlabel('k')
 plt.ylabel('Errore')
 plt.show()
-
