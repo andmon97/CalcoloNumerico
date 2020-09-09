@@ -26,7 +26,8 @@ def TrapeziComposti(f,a,b,N):
         x = np.array([z[i],z[i],z[i+1],z[i+1],z[i]])
         y = np.array([0,fz[i],fz[i+1],0,0])
         plt.plot(x,y,'r:',linewidth=1.1)
-        return T
+
+    return T
 
 # Intervallo di integrazione
 a = 2.0 ; b = 6.0
@@ -43,16 +44,14 @@ N = 5
 T = TrapeziComposti(f,a,b,N)
 E = abs(I - T)
 
-print('\nFUNZIONE DA INTEGRARE: f(x) = e^(x/2) + cos(x) + 1 \nnell intervallo [%.2f,%.2f] dividendolo in %d sottointervalli' %(a,b,N) )
-print('Integrale esatto : %f' % I)
+print('Integrale essatto : %f' % I)
 print('Formula composta del Trapezio : %f' % T)
 print('Errore commesso : %e' % E)
-
 # Rappresentazione grafica
 x = np.linspace(a-0.1,b+0.1,200)
 y = f(x)
-plt.plot(x,y,'r-',label='f(x)',linewidth=1.2)
+plt.plot(x,y,label='f(x)',linewidth=1.2)
 plt.xlabel('x')
 plt.ylabel('y')
-plt.legend(loc='upper left')
+plt.legend()
 plt.show()

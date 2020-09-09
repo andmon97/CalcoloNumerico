@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 
 # Definizione funzione da integrare
 def f(x):
-    y = np.cos(x) + 2
+    y = x
     return y
 
 def F(x):
-    y = np.sin(x) + 2*x
+    y = (x**2)/2
     return y
 
 #Calcolo formula del Trapezio
