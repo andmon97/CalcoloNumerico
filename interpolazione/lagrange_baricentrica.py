@@ -41,13 +41,13 @@ def Lagrange(x_nodi,y_nodi,x):
 
 # Funzione da interpolare
 def funz(x):
-    y = np.sin(x)
+    y = x**4 - 3**2
     return y
 
 # Grado del polinomio di interpolazione
-n = 15
+n = 4
 # Calcolo dei nodi e dei valori associati
-a = 0 ; b = 2*np.pi
+a = -5.00 ; b = 5.00
 x_nodi = np.linspace(a,b,n+1)
 y_nodi = funz(x_nodi)
 # Punti in cui calcolare il polinomio
@@ -64,7 +64,7 @@ plt.plot(x,f,label='f(x)')
 plt.plot(x_nodi,y_nodi,'k*')
 plt.legend()
 plt.xlabel('x')
-plt.title('Pol. interp. grado n=%d di f(x)=sin(x) in [%4.2f, %4.2f]' % (n,a,b))
+plt.title('Pol. interp. grado n=%d di f(x)=x**4 - 3**2in [%4.2f, %4.2f]' % (n,a,b))
 plt.show(block=False)
 
 # Grafico del resto del polinomio di interpolazione
@@ -72,5 +72,5 @@ plt.figure(1)
 plt.semilogy(x,abs(p-f),label='R(x)')
 plt.legend()
 plt.xlabel('x')
-plt.title('Resto pol. interp. grado n=%d di f(x)=sin(x) in [%4.2f, %4.2f]' % (n,a,b))
+plt.title('Resto pol. interp. grado n=%d di f(x)=x**4 - 3**2  in [%4.2f, %4.2f]' % (n,a,b))
 plt.show(block=False)
